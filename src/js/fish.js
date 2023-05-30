@@ -1,5 +1,6 @@
 import { Actor, Vector, Color, Engine } from "excalibur"
 import {Resources} from "./resources.js";
+import {Player} from "./player.js";
 
 export class Fish extends Actor {
 
@@ -14,11 +15,8 @@ export class Fish extends Actor {
         this.engine = engine
         this.sprite = Resources.Fish.toSprite()
         this.graphics.use(this.sprite)
-        this.enableCapturePointer = true
-        this.pointer.useGraphicsBounds = true
         this.resetPosition()
-        this.on("pointerup", (event) => this.addPoint())
-        this.on("collisionstart", (event) => this.bounce())
+        this.on("collisionstart", (event) => this.onCollision(event ))
     }
 
     resetPosition() {
@@ -41,8 +39,13 @@ export class Fish extends Actor {
         }
     }
 
-    bounce() {
-        this.vel.x = -this.vel.x;
-        this.vel.y = -this.vel.y;
+    onCollision(e) {
+        if (e.other instanceof Player) {
+            console.log("e")
+            this.addPoint()
+        } else {
+            this.vel.x = -this.vel.x;
+            this.vel.y = -this.vel.y;
+        }
     }
 }
