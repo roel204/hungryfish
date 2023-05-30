@@ -1,4 +1,4 @@
-import { Scene } from "excalibur"
+import {Scene} from "excalibur"
 
 export class Begin extends Scene {
 
@@ -10,9 +10,6 @@ export class Begin extends Scene {
 
     onActivate(ctx) {
         console.log("the scene begin has started!")
-    }
-
-    gameOver() {
-        this.game.goToScene('gameover')
+        this.game.goToScene('level1')
     }
 }

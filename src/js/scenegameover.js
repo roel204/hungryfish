@@ -1,4 +1,4 @@
-import { Scene } from "excalibur"
+import {Scene} from "excalibur"
 
 export class GameOver extends Scene {
 
