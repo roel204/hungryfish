@@ -6,17 +6,28 @@ import {HealthBar} from "./healthbar.js";
 
 export class Level1 extends Scene {
 
-    health
-    game
-    time = 0
-    score
     engine
+    game
+    label
+    timer
+    time = 0
+    health
 
     onInitialize(engine) {
         this.game = engine
     }
 
     onActivate(ctx) {
+        //Reset Actors, Timer, Time
+        this.actors.forEach((actor) => {
+            this.remove(actor);
+        });
+        if (this.timer) {
+            this.remove(this.timer)
+        }
+        this.time = 0
+
+        //Add Player, Fish, Enemy, HP
         const player = new Player()
         this.add(player)
 
@@ -32,7 +43,8 @@ export class Level1 extends Scene {
         this.health = health
         this.add(health)
 
-        this.score = new Label({
+        //Add the Label
+        this.label = new Label({
             text: 'Time: 0.00',
             pos: new Vector(50, 50),
             font: new Font({
@@ -40,24 +52,25 @@ export class Level1 extends Scene {
                 size: 24,
                 unit: FontUnit.Px
             })
-        });
-        this.add(this.score)
+        })
+        this.add(this.label)
 
-        const timer = new Timer({
-            fcn: () => this.onTimer(this.engine),
+        //Create timer and activate it
+        this.timer = new Timer({
+            fcn: () => this.onTimer(),
             repeats: true,
             interval: 10,
         })
-        this.add(timer)
-        timer.start()
+        this.add(this.timer)
+        this.timer.start()
     }
 
-    onTimer(engine) {
-        this.time += 0.01
-        this.score.text = `Time: ${this.time.toFixed(2)}`
-        engine.currentScene.health.loseHealth(1.5)
+    onTimer() {
+        this.time += 0.01;
+        this.label.text = `Time: ${this.time.toFixed(2)}`;
+        this.health.loseHealth(1.5);
         if (this.health.healthrectangle.width <= 1) {
-            this.game.goToScene('gameover')
+            this.game.goToScene("gameover");
         }
     }
 }

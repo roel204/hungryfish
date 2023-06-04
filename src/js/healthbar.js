@@ -1,5 +1,4 @@
-import { Actor, Vector, Color, Sprite, Rectangle, clamp} from 'excalibur'
-import {Resources} from "./resources.js";
+import { Actor, Vector, Color, Rectangle} from 'excalibur'
 
 export class HealthBar extends Actor {
 
@@ -15,10 +14,6 @@ export class HealthBar extends Actor {
         })
         this.anchor = new Vector(0, 0)
         this.graphics.use(this.healthrectangle)
-    }
-
-    resetHealth(){
-        this.healthrectangle.width = 200
     }
 
     loseHealth(damage) {
