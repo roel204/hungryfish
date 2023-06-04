@@ -70,7 +70,7 @@ export class Level1 extends Scene {
         this.label.text = `Time: ${this.time.toFixed(2)}`;
         this.health.loseHealth(1.5);
         if (this.health.healthrectangle.width <= 1) {
-            this.game.goToScene("gameover");
+            this.game.goToScene("gameover", {time: this.time});
         }
     }
 }

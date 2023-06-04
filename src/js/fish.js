@@ -16,7 +16,7 @@ export class Fish extends Actor {
         this.sprite = Resources.Fish.toSprite()
         this.graphics.use(this.sprite)
         this.resetPosition()
-        this.on("collisionstart", (event) => this.onCollision(event, engine))
+        this.on("precollision", (event) => this.onCollision(event, engine))
     }
 
     resetPosition() {
