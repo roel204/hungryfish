@@ -1,8 +1,10 @@
-import { Actor, Vector, Color, Sprite, Rectangle, clamp } from 'excalibur'
+import { Actor, Vector, Color, Sprite, Rectangle, clamp} from 'excalibur'
+import {Resources} from "./resources.js";
 
 export class HealthBar extends Actor {
 
     healthrectangle
+
 
     constructor() {
         super({ width: 200, height: 30 })
@@ -20,10 +22,6 @@ export class HealthBar extends Actor {
     }
 
     loseHealth(damage) {
-        this.healthrectangle.width = this.healthrectangle.width - damage
-
-        if (this.healthrectangle.width <= 0) {
-            this.game.goToScene('gameover')
-        }
+        this.healthrectangle.width = Math.max(1, this.healthrectangle.width - damage);
     }
 }

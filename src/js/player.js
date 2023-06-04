@@ -1,6 +1,5 @@
 import {Actor, Vector, Color, Engine, Input} from "excalibur"
 import {Resources} from "./resources.js";
-import {HealthBar} from "./healthbar.js";
 
 export class Player extends Actor {
 

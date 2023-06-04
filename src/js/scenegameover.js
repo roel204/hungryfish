@@ -10,5 +10,6 @@ export class GameOver extends Scene {
 
     onActivate(ctx) {
         console.log("the scene Game Over has started!")
+        this.game.goToScene('start')
     }
 }

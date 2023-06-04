@@ -22,7 +22,6 @@ export class Fish extends Actor {
     resetPosition() {
         this.pos = new Vector(Math.random() * 1200 + 100, Math.random() * 500 + 100)
         this.vel = new Vector(Math.random() * 100 - 50, Math.random() * 100 - 50)
-        this.sprite.tint = new Color(Math.random() * 256, Math.random() * 256, Math.random() * 256)
     }
 
     onPostUpdate(engine) {
@@ -36,11 +35,8 @@ export class Fish extends Actor {
 
     onCollision(e) {
         if (e.other instanceof Player) {
-            this.engine.currentScene.updateScore(this.engine)
             this.resetPosition()
-        } else {
-            this.vel.x = -this.vel.x;
-            this.vel.y = -this.vel.y;
+            this.engine.currentScene.updateScore(this.engine)
         }
     }
 }
