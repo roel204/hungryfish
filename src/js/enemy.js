@@ -16,7 +16,7 @@ export class Enemy extends Fish {
         this.engine = engine
         this.sprite = Resources.Fish.toSprite()
         this.graphics.use(this.sprite)
-        this.sprite.tint = new Color(255, 0, 0)
+        this.sprite.tint = new Color(255, 30, 30)
         this.resetPosition()
         this.on("collisionstart", (event) => this.onCollision(event, this.engine))
     }
@@ -24,7 +24,7 @@ export class Enemy extends Fish {
     onCollision(e, engine) {
         if (e.other instanceof Player) {
             this.resetPosition()
-            engine.currentScene.health.loseHealth(50)
+            engine.currentScene.health.loseHealth(200)
         }
     }
 }

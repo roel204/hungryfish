@@ -16,7 +16,7 @@ export class Fish extends Actor {
         this.sprite = Resources.Fish.toSprite()
         this.graphics.use(this.sprite)
         this.resetPosition()
-        this.on("collisionstart", (event) => this.onCollision(event))
+        this.on("collisionstart", (event) => this.onCollision(event, engine))
     }
 
     resetPosition() {
@@ -33,10 +33,10 @@ export class Fish extends Actor {
         }
     }
 
-    onCollision(e) {
+    onCollision(e, engine) {
         if (e.other instanceof Player) {
             this.resetPosition()
-            this.engine.currentScene.updateScore(this.engine)
+            engine.currentScene.health.loseHealth(-35)
         }
     }
 }

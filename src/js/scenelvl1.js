@@ -46,22 +46,18 @@ export class Level1 extends Scene {
         const timer = new Timer({
             fcn: () => this.onTimer(this.engine),
             repeats: true,
-            interval: 50,
+            interval: 10,
         })
         this.add(timer)
         timer.start()
     }
 
     onTimer(engine) {
-        this.time += 0.05
+        this.time += 0.01
         this.score.text = `Time: ${this.time.toFixed(2)}`
         engine.currentScene.health.loseHealth(1.5)
         if (this.health.healthrectangle.width <= 1) {
-            console.log("DIE")
+            this.game.goToScene('gameover')
         }
-    }
-
-    updateScore(engine) {
-        engine.currentScene.health.loseHealth(-10)
     }
 }

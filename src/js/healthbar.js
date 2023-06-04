@@ -9,7 +9,7 @@ export class HealthBar extends Actor {
     constructor() {
         super({ width: 200, height: 30 })
         this.healthrectangle = new Rectangle({
-            width: 200,
+            width: 500,
             height: 30,
             color: Color.Red,
         })
