@@ -10,9 +10,23 @@ export class GameOver extends Scene {
     onInitialize(engine) {
         this.game = engine
 
+        //Add Game Over Text
+        const gameOverLabel = new Label({
+            pos: new Vector(engine.drawWidth / 2, 100),
+            text: 'Game Over',
+            color: Color.White,
+            font: new Font({
+                size: 72,
+                family: 'Arial',
+                textAlign: 'center',
+            }),
+        });
+        gameOverLabel.anchor.setTo(0.5, 0.5);
+        this.add(gameOverLabel);
+
         //Add High Score label
         this.highScoreLabel = new Label({
-            pos: new Vector(50, 50),
+            pos: new Vector(50, 100),
             color: Color.White,
             font: new Font({
                 size: 30

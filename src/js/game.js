@@ -21,7 +21,7 @@ export class Game extends Engine {
 
         this.goToScene('start')
 
-        // this.showDebug(true)
+        //this.showDebug(true)
     }
 }
 
