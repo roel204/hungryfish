@@ -71,7 +71,7 @@ export class Begin extends Scene {
         //When game start save player name into local storage.
         let playerName = this.playerNameInput.value.trim()
         if (playerName === '') {
-            playerName = 'Player'
+            playerName = `Player${Math.floor(Math.random() * 10000)}`
         }
 
         //Store the player name in localStorage
