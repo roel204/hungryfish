@@ -1,8 +1,12 @@
 import {ImageSource, Sound, Resource, Loader} from 'excalibur'
 import fishImage from '../images/fish.png'
+import startButton from '../images/start.png'
+import retryButton from '../images/retry.png'
 
 const Resources = {
-    Fish: new ImageSource(fishImage)
+    Fish: new ImageSource(fishImage),
+    Start: new ImageSource(startButton),
+    Retry: new ImageSource(retryButton)
 }
 const resourceArray = []
 for (const key in Resources) {

@@ -18,6 +18,8 @@ export class Game extends Engine {
         this.add('gameover', new GameOver())
 
         this.goToScene('start')
+
+        // this.showDebug(true)
     }
 }
 

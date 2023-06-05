@@ -1,15 +1,39 @@
-import {Scene} from "excalibur"
+import {Color, Font, Label, Scene, Vector, Actor} from "excalibur"
+import {Resources} from "./resources.js";
 
 export class Begin extends Scene {
 
     game
+    highScore
 
     onInitialize(engine) {
         this.game = engine
+
+        this.highScoreLabel = new Label({
+            pos: new Vector(engine.drawWidth / 2, 100),
+            color: Color.White,
+            font: new Font({
+                size: 30
+            })
+        });
+        this.add(this.highScoreLabel)
     }
 
     onActivate(ctx) {
-        console.log("the scene begin has started!")
-        this.game.goToScene('level1')
+        this.highScore = parseFloat(localStorage.getItem('highScore')) || 0
+
+        const startButton = new Actor({
+            pos: new Vector(700, 350),
+            width: Resources.Start.toSprite().width,
+            height: Resources.Start.toSprite().height,
+
+        });
+        startButton.graphics.use(Resources.Start.toSprite())
+        startButton.on('pointerup', () => {
+            this.game.goToScene('level1')
+        })
+        this.add(startButton)
+
+        this.highScoreLabel.text = `Highscore to beat: ${this.highScore.toFixed(2)}`
     }
 }

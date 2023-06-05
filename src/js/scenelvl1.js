@@ -27,18 +27,20 @@ export class Level1 extends Scene {
         }
         this.time = 0
 
-        //Add Player, Fish, Enemy, HP
+        //Add Player
         const player = new Player()
         this.add(player)
 
+        //Add Fish
         for (let i = 0; i < 10; i++) {
             const fish = new Fish()
             this.add(fish)
         }
-
+        //Add Enemy
         const enemy = new Enemy()
         this.add(enemy)
 
+        //Add HP Bar
         const health = new HealthBar()
         this.health = health
         this.add(health)
@@ -66,6 +68,7 @@ export class Level1 extends Scene {
     }
 
     onTimer() {
+        //Every 10ms the timer counts up, put inside the label, lose HP, and if HP lower than 1 game over.
         this.time += 0.01;
         this.label.text = `Time: ${this.time.toFixed(2)}`;
         this.health.loseHealth(1.5);

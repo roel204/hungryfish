@@ -1,4 +1,5 @@
-import { Color, Font, Label, Scene, Vector } from 'excalibur'
+import { Color, Font, Label, Scene, Vector, Actor } from 'excalibur'
+import {Resources} from "./resources.js";
 
 export class GameOver extends Scene {
     game
@@ -9,10 +10,9 @@ export class GameOver extends Scene {
     onInitialize(engine) {
         this.game = engine
 
+        //Add High Score label
         this.highScoreLabel = new Label({
-            pos: new Vector(100, 200),
-            width: 200,
-            height: 40,
+            pos: new Vector(engine.drawWidth / 2, 100),
             color: Color.White,
             font: new Font({
                 size: 30
@@ -22,8 +22,7 @@ export class GameOver extends Scene {
     }
 
     onActivate(ctx) {
-        console.log('The scene Game Over has started!')
-
+        //Put highscore from localstorage inside var
         this.highScore = parseFloat(localStorage.getItem('highScore')) || 0
 
         if (ctx.data) {
@@ -38,20 +37,17 @@ export class GameOver extends Scene {
             }
         }
 
-        const startButton = new Label({
-            pos: new Vector(100, 100),
-            width: 100,
-            height: 40,
-            text: 'Start',
-            color: Color.White,
-            font: new Font({
-                size: 30
-            })
-        })
-        startButton.on('pointerup', () => {
+        const retryButton = new Actor({
+            pos: new Vector(700, 350),
+            width: Resources.Retry.toSprite().width,
+            height: Resources.Retry.toSprite().height,
+
+        });
+        retryButton.graphics.use(Resources.Retry.toSprite())
+        retryButton.on('pointerup', () => {
             this.game.goToScene('start')
         })
-        this.add(startButton)
+        this.add(retryButton)
     }
 
     showHighScoreText(isNewHighScore) {
