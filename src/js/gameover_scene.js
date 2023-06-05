@@ -1,5 +1,6 @@
 import {Color, Font, Label, Scene, Vector, Actor} from 'excalibur'
-import {Resources} from "./resources.js";
+import {Resources} from "./resources.js"
+import {Leaderboard} from "./leaderboard.js"
 
 export class GameOver extends Scene {
     game
@@ -22,6 +23,11 @@ export class GameOver extends Scene {
     }
 
     onActivate(ctx) {
+
+        const leaderboard = new Leaderboard()
+        leaderboard.addScore("TEST", 10.00)
+        const topScores = leaderboard.getTopScores()
+
         //Put highscore from localstorage inside var
         this.highScore = parseFloat(localStorage.getItem('highScore')) || 0
 

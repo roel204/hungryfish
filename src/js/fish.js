@@ -20,12 +20,6 @@ export class Fish extends Actor {
         this.on("precollision", (event) => this.onCollision(event, engine))
     }
 
-    resetPosition() {
-        //Event to reset the Fish when collided.
-        this.pos = new Vector(Math.random() * 1200 + 100, Math.random() * 500 + 100)
-        this.vel = new Vector(Math.random() * 100 - 50, Math.random() * 100 - 50)
-    }
-
     onPostUpdate(engine) {
         //Makes the Fish bounce like DvD logo.
         if (this.pos.x < Resources.Fish.width / 2 || this.pos.x + Resources.Fish.width / 2 > engine.drawWidth) {
@@ -34,6 +28,12 @@ export class Fish extends Actor {
         if (this.pos.y < Resources.Fish.height / 2 || this.pos.y + Resources.Fish.height / 2 > engine.drawHeight) {
             this.vel.y = -this.vel.y;
         }
+    }
+
+    resetPosition() {
+        //Event to reset the Fish when collided.
+        this.pos = new Vector(Math.random() * 1200 + 100, Math.random() * 500 + 100)
+        this.vel = new Vector(Math.random() * 100 - 50, Math.random() * 100 - 50)
     }
 
     onCollision(e, engine) {

@@ -37,8 +37,10 @@ export class Level1 extends Scene {
             this.add(fish)
         }
         //Add Enemy
-        const enemy = new Enemy()
-        this.add(enemy)
+        for (let i = 0; i < 2; i++) {
+            const enemy = new Enemy()
+            this.add(enemy)
+        }
 
         //Add HP Bar
         const health = new HealthBar()

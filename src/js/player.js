@@ -15,7 +15,7 @@ export class Player extends Actor {
         this.engine = engine
         this.sprite = Resources.Fish.toSprite()
         this.graphics.use(this.sprite)
-        this.sprite.tint = new Color(0, 0, 0)
+        this.sprite.tint = new Color(0, 255, 0)
         this.pos = new Vector(100, 300)
     }
 
