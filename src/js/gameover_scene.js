@@ -10,7 +10,7 @@ export class GameOver extends Scene {
     onInitialize(engine) {
         this.game = engine
 
-        //Add Game Over Text
+        //Add Game Over Text.
         const gameOverLabel = new Label({
             pos: new Vector(engine.drawWidth / 2, 100),
             text: 'Game Over',
@@ -20,18 +20,18 @@ export class GameOver extends Scene {
                 family: 'Arial',
                 textAlign: 'center',
             }),
-        });
-        gameOverLabel.anchor.setTo(0.5, 0.5);
-        this.add(gameOverLabel);
+        })
+        gameOverLabel.anchor.setTo(0.5, 0.5)
+        this.add(gameOverLabel)
 
-        //Add High Score label
+        //Add High Score label.
         this.highScoreLabel = new Label({
             pos: new Vector(50, 100),
             color: Color.White,
             font: new Font({
                 size: 30
             })
-        });
+        })
         this.add(this.highScoreLabel)
     }
 
@@ -40,8 +40,10 @@ export class GameOver extends Scene {
         const leaderboard = new Leaderboard()
 
         if (ctx.data) {
+            //Add player to the leaderboard.
+            const playerName = localStorage.getItem('playerName')
             this.currentTime = parseFloat(ctx.data.time.toFixed(2))
-            leaderboard.addScore("Player", this.currentTime)
+            leaderboard.addScore(playerName, this.currentTime)
             this.highScoreLabel.text = leaderboard.getFormattedTopScores()
         }
 
@@ -50,8 +52,7 @@ export class GameOver extends Scene {
             pos: new Vector(700, 350),
             width: Resources.Retry.toSprite().width,
             height: Resources.Retry.toSprite().height,
-
-        });
+        })
         retryButton.graphics.use(Resources.Retry.toSprite())
         retryButton.on('pointerup', () => {
             this.game.goToScene('start')
