@@ -6,7 +6,7 @@ export class Leaderboard extends Actor {
     constructor() {
         super();
     }
-
+//e
     addScore(name, score) {
         const savedScores = localStorage.getItem('leaderboard');
         if (savedScores) {
