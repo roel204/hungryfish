@@ -1,9 +1,9 @@
 import '../css/style.css'
 import {Engine} from "excalibur"
 import {ResourceLoader} from './resources.js'
-import {Begin} from './scenebegin.js'
-import {Level1} from './scenelevel.js'
-import {GameOver} from './scenegameover.js'
+import {Begin} from './begin_scene.js'
+import {Level1} from './level_scene.js'
+import {GameOver} from './gameover_scene.js'
 
 export class Game extends Engine {
 
