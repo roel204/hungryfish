@@ -1,17 +1,17 @@
 import {Color, Font, Label, Scene, Vector, Actor} from "excalibur"
 import {Resources} from "./resources.js";
+import {Leaderboard} from "./leaderboard.js"
 
 export class Begin extends Scene {
 
     game
-    highScore
 
     onInitialize(engine) {
         this.game = engine
 
         //Create and add High Score Label.
         this.highScoreLabel = new Label({
-            pos: new Vector(engine.drawWidth / 2, 100),
+            pos: new Vector(50, 50),
             color: Color.White,
             font: new Font({
                 size: 30
@@ -21,8 +21,9 @@ export class Begin extends Scene {
     }
 
     onActivate(ctx) {
-        //Store High Score from local storage.
-        this.highScore = parseFloat(localStorage.getItem('highScore')) || 0
+
+        const leaderboard = new Leaderboard()
+        this.highScoreLabel.text = leaderboard.getFormattedTopScores()
 
         //Create Start button.
         const startButton = new Actor({
@@ -36,8 +37,5 @@ export class Begin extends Scene {
             this.game.goToScene('level1')
         })
         this.add(startButton)
-
-        //Set the text inside the High Score Label.
-        this.highScoreLabel.text = `Highscore to beat: ${this.highScore.toFixed(2)}`
     }
 }
