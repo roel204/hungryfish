@@ -41,7 +41,7 @@ export class GameOver extends Scene {
 
         if (ctx.data) {
             this.currentTime = parseFloat(ctx.data.time.toFixed(2))
-            leaderboard.addScore("TESTNAME", this.currentTime)
+            leaderboard.addScore("Player", this.currentTime)
             this.highScoreLabel.text = leaderboard.getFormattedTopScores()
         }
 
