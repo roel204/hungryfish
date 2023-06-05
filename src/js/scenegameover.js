@@ -1,4 +1,4 @@
-import { Color, Font, Label, Scene, Vector, Actor } from 'excalibur'
+import {Color, Font, Label, Scene, Vector, Actor} from 'excalibur'
 import {Resources} from "./resources.js";
 
 export class GameOver extends Scene {
@@ -25,6 +25,7 @@ export class GameOver extends Scene {
         //Put highscore from localstorage inside var
         this.highScore = parseFloat(localStorage.getItem('highScore')) || 0
 
+        //Get the Time data from the level, save and show high score if needed.
         if (ctx.data) {
             this.currentTime = parseFloat(ctx.data.time.toFixed(2))
 
@@ -37,6 +38,7 @@ export class GameOver extends Scene {
             }
         }
 
+        //Create Retry button.
         const retryButton = new Actor({
             pos: new Vector(700, 350),
             width: Resources.Retry.toSprite().width,
@@ -51,6 +53,7 @@ export class GameOver extends Scene {
     }
 
     showHighScoreText(isNewHighScore) {
+        //Set High Score text.
         if (isNewHighScore) {
             this.highScoreLabel.text = `You got a new High Score: ${this.highScore.toFixed(2)}`
         } else {

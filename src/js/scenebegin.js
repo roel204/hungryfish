@@ -9,6 +9,7 @@ export class Begin extends Scene {
     onInitialize(engine) {
         this.game = engine
 
+        //Create and add High Score Label.
         this.highScoreLabel = new Label({
             pos: new Vector(engine.drawWidth / 2, 100),
             color: Color.White,
@@ -20,8 +21,10 @@ export class Begin extends Scene {
     }
 
     onActivate(ctx) {
+        //Store High Score from local storage.
         this.highScore = parseFloat(localStorage.getItem('highScore')) || 0
 
+        //Create Start button.
         const startButton = new Actor({
             pos: new Vector(700, 350),
             width: Resources.Start.toSprite().width,
@@ -34,6 +37,7 @@ export class Begin extends Scene {
         })
         this.add(startButton)
 
+        //Set the text inside the High Score Label.
         this.highScoreLabel.text = `Highscore to beat: ${this.highScore.toFixed(2)}`
     }
 }

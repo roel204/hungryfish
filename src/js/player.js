@@ -11,6 +11,7 @@ export class Player extends Actor {
     }
 
     onInitialize(engine) {
+        //Set Player Sprite, Tint and Position.
         this.engine = engine
         this.sprite = Resources.Fish.toSprite()
         this.graphics.use(this.sprite)
@@ -19,6 +20,7 @@ export class Player extends Actor {
     }
 
     onPreUpdate(engine) {
+        //Give the player controlls.
 
         let xspeed = 0
         let yspeed = 0

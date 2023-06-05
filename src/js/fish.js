@@ -12,6 +12,7 @@ export class Fish extends Actor {
     }
 
     onInitialize(engine) {
+        //Set Fish Sprite, Position and collider event.
         this.engine = engine
         this.sprite = Resources.Fish.toSprite()
         this.graphics.use(this.sprite)
@@ -20,11 +21,13 @@ export class Fish extends Actor {
     }
 
     resetPosition() {
+        //Event to reset the Fish when collided.
         this.pos = new Vector(Math.random() * 1200 + 100, Math.random() * 500 + 100)
         this.vel = new Vector(Math.random() * 100 - 50, Math.random() * 100 - 50)
     }
 
     onPostUpdate(engine) {
+        //Makes the Fish bounce like DvD logo.
         if (this.pos.x < Resources.Fish.width / 2 || this.pos.x + Resources.Fish.width / 2 > engine.drawWidth) {
             this.vel.x = -this.vel.x;
         }
@@ -34,9 +37,10 @@ export class Fish extends Actor {
     }
 
     onCollision(e, engine) {
+        //If touched Player then reset pos and give health.
         if (e.other instanceof Player) {
             this.resetPosition()
-            engine.currentScene.health.loseHealth(-35)
+            engine.currentScene.health.loseHealth(35)
         }
     }
 }

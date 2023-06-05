@@ -45,7 +45,7 @@ export class Level1 extends Scene {
         this.health = health
         this.add(health)
 
-        //Add the Label
+        //Add the Time Label
         this.label = new Label({
             text: 'Time: 0.00',
             pos: new Vector(50, 50),
@@ -71,7 +71,7 @@ export class Level1 extends Scene {
         //Every 10ms the timer counts up, put inside the label, lose HP, and if HP lower than 1 game over.
         this.time += 0.01;
         this.label.text = `Time: ${this.time.toFixed(2)}`;
-        this.health.loseHealth(1.5);
+        this.health.loseHealth(-1.5);
         if (this.health.healthrectangle.width <= 1) {
             this.game.goToScene("gameover", {time: this.time});
         }

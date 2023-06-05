@@ -13,6 +13,7 @@ export class Enemy extends Fish {
     }
 
     onInitialize(engine) {
+        //Set Enemy sprite, tint, postion and set collider.
         this.engine = engine
         this.sprite = Resources.Fish.toSprite()
         this.graphics.use(this.sprite)
@@ -22,9 +23,10 @@ export class Enemy extends Fish {
     }
 
     onCollision(e, engine) {
+        //If Enemy touch player reset location and remove HP.
         if (e.other instanceof Player) {
             this.resetPosition()
-            engine.currentScene.health.loseHealth(200)
+            engine.currentScene.health.loseHealth(-200)
         }
     }
 }
