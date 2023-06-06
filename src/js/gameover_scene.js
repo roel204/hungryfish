@@ -5,6 +5,7 @@ import {Leaderboard} from "./leaderboard.js"
 export class GameOver extends Scene {
     game
     highScoreLabel
+    playerNameLabel
     currentTime
 
     onInitialize(engine) {
@@ -33,6 +34,19 @@ export class GameOver extends Scene {
             })
         })
         this.add(this.highScoreLabel)
+
+        //Add Player Name label.
+        this.playerNameLabel = new Label({
+            pos: new Vector(engine.drawWidth / 2, 200),
+            color: Color.White,
+            font: new Font({
+                size: 30,
+                family: 'Arial',
+                textAlign: 'center',
+            })
+        })
+        gameOverLabel.anchor.setTo(0.5, 0.5)
+        this.add(this.playerNameLabel)
     }
 
     onActivate(ctx) {
@@ -45,6 +59,7 @@ export class GameOver extends Scene {
             this.currentTime = parseFloat(ctx.data.time.toFixed(2))
             leaderboard.addScore(playerName, this.currentTime)
             this.highScoreLabel.text = leaderboard.getFormattedTopScores()
+            this.playerNameLabel.text = `Player Name: ${playerName}`
         }
 
         //Create Retry button.
