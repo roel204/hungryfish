@@ -1,6 +1,4 @@
-import {Actor} from 'excalibur'
-
-export class Leaderboard extends Actor {
+export class Leaderboard {
     scores = []
 
     addScore(name, score) {

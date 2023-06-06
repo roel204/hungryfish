@@ -37,7 +37,7 @@ export class GameOver extends Scene {
 
         //Add Player Name label.
         this.playerNameLabel = new Label({
-            pos: new Vector(engine.drawWidth / 2, 200),
+            pos: new Vector(engine.drawWidth / 2, 180),
             color: Color.White,
             font: new Font({
                 size: 30,
@@ -56,10 +56,10 @@ export class GameOver extends Scene {
         if (ctx.data) {
             //Add player to the leaderboard.
             const playerName = localStorage.getItem('playerName')
-            this.currentTime = parseFloat(ctx.data.time.toFixed(2))
+            this.currentTime = parseFloat(ctx.data.time).toFixed(2);
             leaderboard.addScore(playerName, this.currentTime)
             this.highScoreLabel.text = leaderboard.getFormattedTopScores()
-            this.playerNameLabel.text = `Player Name: ${playerName}`
+            this.playerNameLabel.text = `Name: ${playerName}\n\n Time: ${this.currentTime}`
         }
 
         //Create Retry button.
