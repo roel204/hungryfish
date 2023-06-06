@@ -54,6 +54,7 @@ export class Begin extends Scene {
         this.playerNameInput.style.color = 'Black'
         this.playerNameInput.style.textAlign = 'center'
         document.body.appendChild(this.playerNameInput)
+        this.playerNameInput.addEventListener('input', this.onInputTextChanged.bind(this))
 
         //Create Start button.
         this.startButton = new Actor({
@@ -67,6 +68,15 @@ export class Begin extends Scene {
         this.startButton.on('pointerup', this.onStartButtonClick)
     }
 
+    onInputTextChanged() {
+        // noinspection JSIgnoredPromiseFromCall
+        Resources.Type.play(1)
+        // Trim the input text to the maximum length
+        if (this.playerNameInput.value.length > 10) {
+            this.playerNameInput.value = this.playerNameInput.value.slice(0, 10)
+        }
+    }
+
     onStartButtonClick = () => {
         //When game start save player name into local storage.
         let playerName = this.playerNameInput.value.trim()
@@ -76,6 +86,7 @@ export class Begin extends Scene {
 
         //Store the player name in localStorage
         localStorage.setItem('playerName', playerName)
+        Resources.Click.play(1)
 
         this.game.goToScene('level1')
     }

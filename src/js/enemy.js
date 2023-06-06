@@ -27,6 +27,8 @@ export class Enemy extends Fish {
         if (e.other instanceof Player) {
             this.resetPosition()
             engine.currentScene.health.loseHealth(-200)
+            // noinspection JSIgnoredPromiseFromCall
+            Resources.Damage2.play(1)
         }
     }
 }

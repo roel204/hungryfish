@@ -55,6 +55,8 @@ export class GameOver extends Scene {
         })
         retryButton.graphics.use(Resources.Retry.toSprite())
         retryButton.on('pointerup', () => {
+            // noinspection JSIgnoredPromiseFromCall
+            Resources.Click.play(1)
             this.game.goToScene('start')
         })
         this.add(retryButton)
