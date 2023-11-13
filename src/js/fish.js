@@ -40,7 +40,7 @@ export class Fish extends Actor {
         //If touched Player then reset pos and give health.
         if (e.other instanceof Player) {
             this.resetPosition()
-            engine.currentScene.health.loseHealth(35)
+            engine.currentScene.health.loseHealth(35) //Class communicating trough game/engine.
             // noinspection JSIgnoredPromiseFromCall
             Resources.Beep.play(1)
         }
